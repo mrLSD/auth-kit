@@ -1,0 +1,12 @@
+language: go
+go_import_path: github.com/mrlsd/auth-kit
+go:
+  - 1.6
+  - 1.7
+  - tip
+before_install:
+script:
+  - go build main.go
+matrix:
+  allow_failures:
+    - go: tip
