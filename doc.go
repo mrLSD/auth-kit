@@ -17,5 +17,5 @@ Main features:
 	* Interfaces and infrastructure for custom session
 	  backends: sessions from different stores can be retrieved and batch-saved using a common API.
 
- */
-package auth
+*/
+package authkit

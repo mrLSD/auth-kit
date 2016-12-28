@@ -12,7 +12,8 @@ run:
 	@go run server.go
 
 test:
-	@./runtest.sh
+	@go test -v  $(go list ./... 2>&1 | grep -v "vendor")
+	@go vet -v  $(go list ./... 2>&1 | grep -v "vendor")
 
 build:
 	@go build
