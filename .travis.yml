@@ -3,14 +3,23 @@ go:
   - 1.6
   - 1.7
   - tip
-install:
-  - go get golang.org/x/tools/cmd/cover
-  - go get github.com/mattn/goveralls
-  - go get github.com/wadey/gocovmerge
-script:
-  - go test . -v -covermode=count -coverprofile=auth.coverprofile
-  - gocovmerge *.coverprofile > merged.coverprofile
-  - goveralls -coverprofile=merged.coverprofile -service=travis-ci
 matrix:
   allow_failures:
     - go: tip
+
+before_install::
+  - go get -t -v ./...
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
+  - go get github.com/wadey/gocovmerge
+
+script:
+  - diff -u <(echo -n) <(gofmt -d .)
+  - go vet $(go list ./... | grep -v /vendor/)
+  - go test . -v -covermode=count -coverprofile=auth.coverprofile
+  - gocovmerge *.coverprofile > merged.coverprofile
+  - goveralls -coverprofile=merged.coverprofile -service=travis-ci
+  - go test -covermode=count -race -coverprofile=codecov.coverage.txt
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
