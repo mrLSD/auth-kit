@@ -5,14 +5,14 @@ import "net/http"
 // Config is the set of session cookie properties
 type Config struct {
 	// Cookie Path scope
-	Path     string
+	Path string
 	// Cookie Domain scope
-	Domain   string
+	Domain string
 	// MaxAge = 0 - it's mean field not set and cookie delete
 	// MaxAge > 0 - it's mean field present and given in seconds
-	MaxAge   uint32
+	MaxAge uint32
 	// cookie may only be transferred over HTTPS
-	Secure   bool
+	Secure bool
 	// Safe cookie from JavaScript access etc.
 	HttpOnly bool
 }
@@ -26,6 +26,14 @@ type Session struct {
 	Values map[string]interface{}
 }
 
+func NewSession(store Store, name string) *Session {
+	return &Session{
+		store:  store,
+		name:   name,
+		Values: make(map[string]interface{}),
+	}
+}
+
 // Name return the session name
 func (sess *Session) Name() string {
 	return sess.name
@@ -35,4 +43,9 @@ func (sess *Session) Name() string {
 // Identical to calling store.Save(w, session).
 func (sess *Session) Save(w http.ResponseWriter) error {
 	return sess.store.Save(w, sess)
+}
+
+// Store return session store
+func (sess *Session) Store() Store {
+	return sess.store
 }
