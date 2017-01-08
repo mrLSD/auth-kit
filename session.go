@@ -10,7 +10,7 @@ type Config struct {
 	Domain string
 	// MaxAge = 0 - it's mean field not set and cookie delete
 	// MaxAge > 0 - it's mean field present and given in seconds
-	MaxAge uint32
+	MaxAge int
 	// cookie may only be transferred over HTTPS
 	Secure bool
 	// Safe cookie from JavaScript access etc.
@@ -21,7 +21,7 @@ type Config struct {
 // and sote session state
 type Session struct {
 	name   string
-	store  *Store
+	store  Store
 	Config *Config
 	Values map[string]interface{}
 }
