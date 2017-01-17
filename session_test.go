@@ -3,8 +3,8 @@ package authkit
 import (
 	"net/http"
 	"net/http/httptest"
-	"testing"
 	"reflect"
+	"testing"
 )
 
 // TestStore - struct for testing Store interface
@@ -13,7 +13,7 @@ type TestStore struct{}
 // New - implement Store interface
 func (ts TestStore) New(req *http.Request, name string) (*Session, error) {
 	return &Session{
-		name:name,
+		name: name,
 	}, nil
 }
 
@@ -61,6 +61,6 @@ func TestSessionMethods(t *testing.T) {
 
 	err = sess.Save(w)
 	if err != nil {
-			t.Fatal("failed to save session", err)
+		t.Fatal("failed to save session", err)
 	}
 }
