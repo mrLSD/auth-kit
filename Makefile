@@ -14,6 +14,8 @@ run:
 test:
 	@go test -v  $(go list ./... 2>&1 | grep -v "vendor")
 	@go vet -v  $(go list ./... 2>&1 | grep -v "vendor")
+	@diff -u <(echo -n) <(gofmt -d .)
+	@gocover
 
 build:
 	@go build
