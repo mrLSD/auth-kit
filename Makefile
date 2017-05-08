@@ -1,6 +1,6 @@
 #
 # Makefile
-# @author Evgeny Ukhanov <evgeny@ukhanov.org.ua>
+# @author Evgeny Ukhanov <mrlsd@ya.ru>
 #
 
 .PHONY: test, build, fmt, install-go
