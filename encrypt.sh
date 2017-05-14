@@ -1,9 +1,11 @@
-mkdir /tmp/auth-go
-git clone github.com/mrlsd/gpg-test /tmp/auth-go/
-tar -cvpzf ../auth-kit /tmp/auth-go/auth-go.tar.gz
-gpg -e -r mrlsd@ya.ru /tmp/auth-go/auth-go.tar.gz
-rm -f /tmp/auth-go/auth-go.tar.gz
-св /tmp/auth-go/
+rm -rf /tmp/auth-kit/
+mkdir /tmp/auth-kit/
+git clone github.com/mrlsd/gpg-test /tmp/auth-kit/
+cp ./ /tmp/auth-kit/
+tar -cvzf /tmp/auth-kit/auth-kit.tar.gz ../auth-kit
+gpg -e -r mrlsd@ya.ru /tmp/auth-kit/auth-kit.tar.gz
+rm -f /tmp/auth-kit/auth-kit.tar.gz
+cd /tmp/auth-kit/
 git add .
 git commit -a
-git push -u origin master
+## git push -u origin master
